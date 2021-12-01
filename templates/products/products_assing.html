@@ -1,0 +1,137 @@
+
+{% extends 'layout.html'%}
+
+{% block content %}
+  
+<div class="content-wrapper">
+  <section class="content-header">
+     <div class="container-fluid">
+        <div class="row mb-2">
+           <div class="col-sm-6">
+              <h1>Products Assigned To Employee</h1>
+           </div>
+           <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                 <li class="breadcrumb-item"><a href="#">Home</a></li>
+                 <li class="breadcrumb-item active">Assigned</li>
+              </ol>
+           </div>
+        </div>
+     </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+  <div class="container-fluid">
+     <form>
+        <div class="card card-default">
+           <div class="card-header">
+              <h3 class="card-title">Products Assigned</h3>
+              <div class="card-tools">
+                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                 <i class="fas fa-minus"></i>
+                 </button>
+                 <button type="button" class="btn btn-tool" data-card-widget="remove">
+                 <i class="fas fa-times"></i>
+                 </button>
+              </div>
+           </div>
+           <div class="card-body">
+              <div class="row">
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label>Staff Name</label>
+                       <select class="form-control" name="staffId" id="staffId">
+                          <option value="1">Md.Sumon M</option>
+                          <option value="2">Shakil</option>
+                          <option value="3">Habib</option>
+                       </select>
+                    </div>
+                    <div class="form-group">
+                       <label for="officeLocation">Office Location</label>
+                       <input type="text" class="form-control" id="officeLocation" placeholder="IOM Dhaka">
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label for="AAFNo">AAF No</label>
+                       <input type="text" class="form-control" id="AAFNo" name="AAFNo" value="BD-10/hrahman/29-11-2021/ITC01">
+                    </div>
+                    <div class="form-group">
+                       <label for="textDate">Date</label>
+                       <input type="text" class="form-control datetimepicker-input" name="textDate" id="datepicker" data-target="#reservationdate" placeholder="MM/DD/YYYY">
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-4">
+                    <div class="form-group">
+                       <select class="form-control" id="productId" name="productId[]">
+                          <option>Select Products</option>
+                          <option value="1">Mac</option>
+                          <option value="2">iPhone</option>
+                          <option value="3">Keyboard</option>
+                       </select>
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="form-group">
+                       <input type="text" class="form-control" id="assetCode" name="assetCode[]" placeholder="Enter Asset Code">
+                    </div>
+                 </div>
+                 <div class="col-md-3">
+                    <div class="form-group">
+                       <input type="text" class="form-control" id="serialNo" name="serialNo[]" placeholder="Enter Serial No">
+                    </div>
+                 </div>
+                 <div class="col-md-2">
+                    <div class="form-group">
+                       <button class="btn btn-success" type="button"  onclick="education_fields();"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                    </div>
+                 </div>
+              </div>
+              <div id="education_fields" >
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="textRemark">Remarks</label>
+                    <textarea class="form-control" id="textRemark" name="textRemark" rows="3"></textarea>
+                  </div>
+              </div>
+              </div>
+           </div>
+           <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+           </div>
+        </div>
+     </form>
+     <!-- /.content -->
+  </div>
+</div>
+
+<script>
+
+  var room = 1;
+  function education_fields() {
+   
+      room++;
+      var objTo = document.getElementById('education_fields')
+      var divtest = document.createElement("div");
+      divtest.setAttribute("class", "form-group removeclass"+room);
+      var rdiv = 'removeclass'+room;
+      divtest.innerHTML = '<div class="row"><div class="col-md-4"><div class="form-group"><select class="form-control" id="productId" name="productId[]"><option>Select Products</option><option value="1">Mac</option><option value="2">iPhone</option><option value="3">Keyboard</option></select></div></div><div class="col-md-3"><div class="form-group"><input type="text" class="form-control" id="assetCode" name="assetCode[]" placeholder="Enter Asset Code"></div> </div><div class="col-md-3"><div class="form-group"><input type="text" class="form-control" id="serialNo" name="serialNo[]" placeholder="Enter Serial No"></div></div><div class="col-md-2"><div class="form-group"><button class="btn btn-danger" type="button"  onclick="remove_education_fields('+ room +');"> <i class="fa fa-minus" aria-hidden="true"></i></button></div></div></div>';
+      objTo.appendChild(divtest)
+    }
+  function remove_education_fields(rid) {
+    $('.removeclass'+rid).remove();
+    }
+  </script>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+
+  {% endblock %}
